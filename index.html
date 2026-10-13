@@ -1,0 +1,116 @@
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>Indumentaria Pura Magia | Streetwear</title>
+<meta name="description" content="Indumentaria Pura Magia. Streetwear, oversize y unisex. Tu estilo, tus reglas.">
+<style>
+:root{--bg:#050505;--panel:#0b0b0b;--line:#555;--white:#f7f7f7;--muted:#b9b9b9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.topbar{display:flex;justify-content:space-between;gap:12px;padding:9px 5%;font-size:11px;border-bottom:1px solid #454545;color:#e5e5e5}
+.nav{display:flex;align-items:center;gap:28px;padding:12px 5%;border-bottom:1px solid #333;position:sticky;top:0;background:rgba(0,0,0,.96);z-index:10}
+.brand{display:flex;align-items:center;gap:12px;margin-right:auto;min-width:230px}
+.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}
+.brand-name{font-size:clamp(16px,2vw,23px);letter-spacing:.18em;font-weight:700}
+.brand-sub{font-size:9px;letter-spacing:.48em;text-align:center;margin-top:4px}
+.navlinks{display:flex;gap:clamp(16px,3vw,42px);font-size:13px}
+.navlinks a{padding:10px 0}.navlinks a:hover{border-bottom:1px solid white}
+.navtools{display:flex;gap:14px;align-items:center;font-size:13px}.iconbtn{background:none;border:0;color:white;font-size:21px;padding:6px}
+.hero{min-height:390px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;position:relative;overflow:hidden;border-bottom:1px solid #555;background:#050505}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.95) 34%,rgba(5,5,5,.45) 64%,rgba(5,5,5,.1) 100%),url('assets/portada-streetwear.jpg') center right/cover no-repeat;opacity:.94}
+.hero-copy{position:relative;padding:54px 0 54px 7%;z-index:1}
+.hero h1{font-family:Georgia,serif;font-size:clamp(38px,6.2vw,76px);line-height:.95;letter-spacing:-.045em;margin:0;text-shadow:0 0 10px #aaa}
+.hero .sub{font-size:clamp(14px,2vw,21px);letter-spacing:.38em;margin:12px 0 24px}
+.tagline{font-size:12px;letter-spacing:.55em;margin:26px 0}
+.outline{display:inline-block;border:1px solid white;background:transparent;color:white;padding:13px 24px;font-size:11px;letter-spacing:.16em}
+.outline:hover{background:white;color:black}
+.hero-side{position:relative;z-index:1;justify-self:end;padding:30px 7%;font-size:10px;line-height:2.8;letter-spacing:.28em;text-align:center}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #444}
+.benefit{display:flex;gap:13px;align-items:center;padding:17px 3%;border-right:1px solid #444;min-height:70px}
+.benefit:last-child{border-right:0}.benefit .ico{font-size:26px}.benefit b{display:block;font-size:10px;margin-bottom:5px}.benefit span{font-size:10px;color:#c9c9c9}
+.section{padding:34px 5% 0}.section-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.section-head h2{font-size:clamp(17px,2vw,23px);font-weight:500;letter-spacing:.28em;margin:0}
+.section-head:before{content:"";width:28px;border-top:2px solid white}.section-head .all{margin-left:auto;font-size:10px;letter-spacing:.12em}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.category{position:relative;min-height:132px;border:1px solid #555;overflow:hidden;background:#111}
+.category img{width:100%;height:100%;min-height:132px;position:absolute;inset:0;object-fit:cover;opacity:.62;filter:grayscale(1)}
+.category:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent 70%)}
+.category span{position:absolute;z-index:1;bottom:13px;left:14px;font-size:12px;letter-spacing:.12em;font-weight:bold}
+.products{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;padding-bottom:26px}
+.product{border:1px solid #555;background:#070707;min-width:0}
+.product-photo{height:clamp(145px,19vw,230px);position:relative;background:#151515;overflow:hidden}
+.product-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:transform .3s}
+.product:hover .product-photo img{transform:scale(1.04)}
+.new{position:absolute;top:9px;left:9px;background:#555;padding:4px 7px;font-size:9px}
+.heart{position:absolute;right:8px;top:6px;background:#0008;border:0;color:white;font-size:21px}
+.product-info{padding:10px;font-size:11px}.product-title{font-size:12px;margin-bottom:5px}.price{font-weight:bold;margin-bottom:9px}
+.sizes{display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap}.size{background:transparent;color:white;border:1px solid #777;padding:5px 8px;font-size:10px}.size.active,.size:hover{background:white;color:black}
+.add{width:100%;border:1px solid #aaa;background:#050505;color:white;padding:9px 5px;font-size:9px;letter-spacing:.06em}.add:hover{background:white;color:black}
+.footer{border-top:1px solid #555;margin-top:0;padding:20px 5% 12px}
+.footer-main{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:16px}
+.footer-slogan{font-size:9px;letter-spacing:.32em;text-align:center;color:#ddd}
+.footer-links{display:flex;gap:12px;align-items:center;font-size:13px}
+.legal{border-top:1px solid #444;padding-top:12px;display:flex;justify-content:space-between;gap:12px;font-size:9px;color:#aaa}
+.cart-float{position:fixed;right:18px;bottom:18px;z-index:20;border:1px solid white;background:#080808;color:white;padding:12px 16px;border-radius:30px;box-shadow:0 0 20px #000}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#f5f5f5;color:#111;padding:12px 18px;z-index:30;display:none;font-size:13px}
+@media(max-width:800px){.topbar{font-size:9px}.nav{gap:10px;padding:10px 4%}.brand{min-width:0}.brand img{width:44px;height:44px}.brand-name{font-size:14px;letter-spacing:.1em}.brand-sub{font-size:7px;letter-spacing:.25em}.navlinks{gap:13px;font-size:11px}.navtools{gap:3px}.hero{min-height:330px;grid-template-columns:1fr}.hero:before{background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.8) 45%,rgba(5,5,5,.18) 100%),url('assets/portada-streetwear.jpg') center/cover}.hero-copy{padding:46px 5%}.hero-side{display:none}.benefits{grid-template-columns:repeat(2,1fr)}.benefit:nth-child(2){border-right:0}.benefit:nth-child(-n+2){border-bottom:1px solid #444}.categories{grid-template-columns:repeat(2,1fr)}.category:last-child{display:none}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-photo{height:220px}.footer-main{flex-wrap:wrap}.footer-slogan{order:3;width:100%}}
+@media(max-width:480px){.topbar span:nth-child(2){display:none}.navlinks{gap:10px}.navlinks a:nth-child(3){display:none}.brand-name{font-size:12px}.navtools .search{display:none}.hero h1{font-size:42px}.hero .sub{letter-spacing:.25em}.tagline{letter-spacing:.28em}.benefit{padding:12px 9px;gap:8px}.benefit .ico{font-size:20px}.benefit b{font-size:9px}.benefit span{font-size:9px}.section{padding-left:4%;padding-right:4%}.categories{gap:8px}.category{min-height:120px}.category img{min-height:120px}.products{gap:8px}.product-info{padding:8px}.product-title{font-size:11px}.product-photo{height:185px}.legal{flex-direction:column}.footer-links{gap:7px}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>▣ &nbsp; Envíos a todo el país</span><span>⌖ &nbsp; Río Gallegos, Santa Cruz</span><span>▧ &nbsp; Consultas por mensaje privado</span></div>
+<header class="nav">
+  <a class="brand" href="#inicio" aria-label="Inicio">
+    <img src="assets/logo-pura-magia.png" alt="Logo Indumentaria Pura Magia">
+    <div><div class="brand-name">PURA MAGIA</div><div class="brand-sub">INDUMENTARIA</div></div>
+  </a>
+  <nav class="navlinks"><a href="#inicio">Inicio</a><a href="#tienda">Tienda</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
+  <div class="navtools"><button class="iconbtn search" aria-label="Buscar" onclick="document.getElementById('buscar').focus()">⌕</button><button class="iconbtn" aria-label="Cuenta" onclick="aviso('El acceso de clientes se configurará más adelante.')">♙</button><button class="iconbtn" aria-label="Carrito" onclick="document.getElementById('carrito').scrollIntoView({behavior:'smooth'})">🛒<sup id="cart-count">0</sup></button></div>
+</header>
+<main>
+<section class="hero" id="inicio"><div class="hero-copy"><h1>PURA MAGIA</h1><div class="sub">— INDUMENTARIA —</div><div class="tagline">TU ESTILO ✦ TUS REGLAS</div><a class="outline" href="#tienda">VER COLECCIÓN&nbsp; →</a></div><div class="hero-side">✦<br>STREETWEAR<br>OVERSIZE<br>UNISEX<br>✦</div></section>
+<section class="benefits" id="nosotros">
+ <div class="benefit"><div class="ico">♧</div><div><b>ENVÍOS A TODO EL PAÍS</b><span>Rápidos y seguros</span></div></div>
+ <div class="benefit"><div class="ico">♢</div><div><b>COMPRA SEGURA</b><span>Tus datos protegidos</span></div></div>
+ <div class="benefit"><div class="ico">▤</div><div><b>VARIOS MEDIOS DE PAGO</b><span>Tarjeta, transferencia y más</span></div></div>
+ <div class="benefit"><div class="ico">☆</div><div><b>ATENCIÓN PERSONALIZADA</b><span>Consultas por mensaje privado</span></div></div>
+</section>
+<section class="section"><div class="section-head"><h2>CATEGORÍAS</h2><a class="all" href="#tienda">VER TODAS&nbsp; →</a></div>
+ <div class="categories">
+  <a class="category" href="#tienda" data-filter="Buzos"><img alt="" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span>BUZOS<br>→</span></a>
+  <a class="category" href="#tienda" data-filter="Remeras"><img alt="" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span>REMERAS<br>→</span></a>
+  <a class="category" href="#tienda" data-filter="Camperas"><img alt="" src="https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span>CAMPERAS<br>→</span></a>
+  <a class="category" href="#tienda" data-filter="Pantalones"><img alt="" src="https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span>PANTALONES<br>→</span></a>
+  <a class="category" href="#tienda" data-filter="Accesorios"><img alt="" src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span>ACCESORIOS<br>→</span></a>
+ </div>
+</section>
+<section class="section" id="tienda"><div class="section-head"><h2>PRODUCTOS DESTACADOS</h2><a class="all" href="#productos">VER TODOS&nbsp; →</a></div>
+ <div style="margin:0 0 15px"><input id="buscar" type="search" placeholder="Buscar productos..." aria-label="Buscar productos" style="background:#0b0b0b;color:white;border:1px solid #555;padding:10px;width:min(100%,320px)"></div>
+ <div class="products" id="productos">
+  <article class="product" data-category="Buzos"><div class="product-photo"><img alt="Buzo oversize negro" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span class="new">NUEVO</span><button class="heart" aria-label="Favorito" onclick="this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button></div><div class="product-info"><div class="product-title">Buzo Oversize PM</div><div class="price">$ 45.000</div><div class="sizes"><button class="size">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div><button class="add" data-name="Buzo Oversize PM" data-price="45000">🛒 &nbsp; AGREGAR AL CARRITO</button></div></article>
+  <article class="product" data-category="Remeras"><div class="product-photo"><img alt="Remera blanca" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span class="new">NUEVO</span><button class="heart" aria-label="Favorito" onclick="this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button></div><div class="product-info"><div class="product-title">Remera Streetwear</div><div class="price">$ 28.000</div><div class="sizes"><button class="size">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div><button class="add" data-name="Remera Streetwear" data-price="28000">🛒 &nbsp; AGREGAR AL CARRITO</button></div></article>
+  <article class="product" data-category="Camperas"><div class="product-photo"><img alt="Campera negra" src="https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span class="new">NUEVO</span><button class="heart" aria-label="Favorito" onclick="this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button></div><div class="product-info"><div class="product-title">Campera Windbreaker</div><div class="price">$ 60.000</div><div class="sizes"><button class="size">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div><button class="add" data-name="Campera Windbreaker" data-price="60000">🛒 &nbsp; AGREGAR AL CARRITO</button></div></article>
+  <article class="product" data-category="Pantalones"><div class="product-photo"><img alt="Pantalón cargo" src="https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span class="new">NUEVO</span><button class="heart" aria-label="Favorito" onclick="this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button></div><div class="product-info"><div class="product-title">Pantalón Cargo</div><div class="price">$ 42.000</div><div class="sizes"><button class="size">S</button><button class="size">M</button><button class="size">L</button><button class="size">XL</button></div><button class="add" data-name="Pantalón Cargo" data-price="42000">🛒 &nbsp; AGREGAR AL CARRITO</button></div></article>
+  <article class="product" data-category="Accesorios"><div class="product-photo"><img alt="Gorra negra" src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&amp;fit=crop&amp;w=600&amp;q=80"><span class="new">NUEVO</span><button class="heart" aria-label="Favorito" onclick="this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button></div><div class="product-info"><div class="product-title">Gorra PM</div><div class="price">$ 18.000</div><div class="sizes"><button class="size active">ÚNICO</button></div><button class="add" data-name="Gorra PM" data-price="18000">🛒 &nbsp; AGREGAR AL CARRITO</button></div></article>
+ </div>
+</section>
+<section class="section" id="carrito" style="padding-bottom:28px"><div class="section-head"><h2>MI CARRITO</h2></div><div id="cart-items" style="font-size:13px;color:#ccc">Todavía no agregaste productos.</div><div id="cart-total" style="margin:12px 0;font-weight:bold"></div><button class="outline" onclick="pedirPorWhatsApp()">CONTINUAR POR WHATSAPP →</button><p style="font-size:10px;color:#999">Los precios y productos de esta primera versión son de ejemplo y se pueden modificar.</p></section>
+</main>
+<footer class="footer" id="contacto"><div class="footer-main"><a class="brand" href="#inicio"><img src="assets/logo-pura-magia.png" alt=""><div><div class="brand-name">PURA MAGIA</div><div class="brand-sub">INDUMENTARIA</div></div></a><div class="footer-slogan">✦ &nbsp; LA MAGIA TAMBIÉN SE LLEVA PUESTA &nbsp; ✦</div><div class="footer-links"><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="TikTok">♪</a><a href="https://wa.me/" target="_blank" rel="noreferrer">☏ WhatsApp</a></div></div><div class="legal"><span>© 2026 Indumentaria Pura Magia. Todos los derechos reservados.</span><span><a href="#contacto">Términos y condiciones</a> | <a href="#contacto">Política de privacidad</a></span></div></footer>
+<button class="cart-float" onclick="document.getElementById('carrito').scrollIntoView({behavior:'smooth'})">🛒 Carrito (<span id="float-count">0</span>)</button>
+<div class="toast" id="toast"></div>
+<script>
+let cart=[];
+let selectedSizes={};
+function aviso(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2600)}
+document.querySelectorAll('.size').forEach(b=>b.addEventListener('click',()=>{b.parentElement.querySelectorAll('.size').forEach(x=>x.classList.remove('active'));b.classList.add('active')}));
+document.querySelectorAll('.add').forEach(b=>b.addEventListener('click',()=>{const card=b.closest('.product');const active=card.querySelector('.size.active');const size=active?active.textContent.trim():(card.querySelector('.size')?.textContent.trim()||'ÚNICO');cart.push({name:b.dataset.name,price:Number(b.dataset.price),size});renderCart();aviso('Agregaste '+b.dataset.name+' ('+size+') al carrito.')}));
+function renderCart(){document.getElementById('cart-count').textContent=cart.length;document.getElementById('float-count').textContent=cart.length;const list=document.getElementById('cart-items');if(!cart.length){list.textContent='Todavía no agregaste productos.';document.getElementById('cart-total').textContent='';return}list.innerHTML=cart.map((p,i)=>`<div style="display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #333;padding:8px 0"><span>${p.name} · talle ${p.size}</span><span>$ ${p.price.toLocaleString('es-AR')} <button onclick="removeItem(${i})" style="background:none;color:white;border:0">✕</button></span></div>`).join('');const total=cart.reduce((s,p)=>s+p.price,0);document.getElementById('cart-total').textContent='Total: $ '+total.toLocaleString('es-AR')}
+function removeItem(i){cart.splice(i,1);renderCart()}
+function pedirPorWhatsApp(){if(!cart.length){aviso('Agregá algún producto antes de continuar.');return}const lines=cart.map(p=>`- ${p.name} (talle ${p.size}): $${p.price.toLocaleString('es-AR')}`).join('%0A');const total=cart.reduce((s,p)=>s+p.price,0);const msg=`Hola, quiero consultar por este pedido:%0A${lines}%0ATotal estimado: $${total.toLocaleString('es-AR')}%0A¿Me indican disponibilidad y envío?`;window.open('https://wa.me/?text='+msg,'_blank')}
+document.querySelectorAll('.category').forEach(a=>a.addEventListener('click',()=>{const cat=a.dataset.filter;document.querySelectorAll('.product').forEach(p=>p.style.display=p.dataset.category===cat?'':'none')}));
+document.querySelector('.all[href="#productos"]').addEventListener('click',()=>document.querySelectorAll('.product').forEach(p=>p.style.display=''));
+document.getElementById('buscar').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.product').forEach(p=>p.style.display=p.textContent.toLowerCase().includes(q)?'':'none')});
+</script>
+</body></html>
