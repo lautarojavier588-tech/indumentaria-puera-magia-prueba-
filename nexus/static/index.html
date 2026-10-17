@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXUS — PROYECTO ZERO</title>
+<style>
+:root{color-scheme:dark;--bg:#090b10;--panel:#11151e;--line:#252c3a;--text:#edf1fa;--muted:#9aa6ba;--accent:#8b9cff;--green:#72dfbd}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#171e32 0,#090b10 52%);font:15px/1.5 system-ui,Segoe UI,sans-serif;color:var(--text)}button,input,textarea{font:inherit}button{cursor:pointer;border:1px solid #414b65;background:#222b40;color:var(--text);border-radius:10px;padding:9px 13px}button:hover{border-color:var(--accent)}input,textarea{width:100%;background:#0b0e15;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text)}.wrap{max-width:1120px;margin:auto;padding:24px}.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px}.orb{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#8b9cff,#6be0c4);display:grid;place-items:center;color:#080b12;font-weight:900;font-size:20px}.muted{color:var(--muted)}.pill{font-size:12px;border:1px solid var(--line);padding:5px 9px;border-radius:99px}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.panel{background:color-mix(in srgb,var(--panel) 94%,transparent);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.panel h2{font-size:17px;margin:0 0 12px}.status{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.chatlog{height:280px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:4px 0 12px}.bubble{padding:11px 13px;border-radius:12px;max-width:95%;white-space:pre-wrap}.bot{background:#1b2232;align-self:flex-start}.user{background:#293455;align-self:flex-end}.formrow{display:flex;gap:8px;margin-top:10px}.formrow button{white-space:nowrap}.stack{display:grid;gap:10px}.item{border:1px solid var(--line);border-radius:11px;padding:11px;margin-top:9px;overflow-wrap:anywhere}.item small{color:var(--muted)}.item p{margin:6px 0}.item button{margin:5px 5px 0 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.notice{font-size:13px;color:var(--muted);margin-top:13px}.full{grid-column:1/-1}@media(max-width:760px){.wrap{padding:14px}.grid,.two{grid-template-columns:1fr}.head{align-items:flex-start}.pill{max-width:150px}}
+</style></head>
+<body><main class="wrap">
+<header class="head"><div class="brand"><div class="orb">N</div><div><div style="font-size:22px;font-weight:750;letter-spacing:.08em">NEXUS</div><div class="muted">PROYECTO ZERO · consola personal</div></div></div><span id="mode" class="pill">Comprobando estado…</span></header>
+<div class="status"><span class="pill">Memoria local SQLite</span><span class="pill">Aprobación humana</span><span class="pill">Acceso remoto desactivado</span></div>
+<div class="grid">
+<section class="panel"><h2>Conversación</h2><div id="chatlog" class="chatlog"><div class="bubble bot">NEXUS iniciado. Esta versión todavía está en modo DEMO: primero dejamos lista la base, después conectamos un modelo real.</div></div><form id="chatform"><div class="formrow"><input id="message" placeholder="Escribí una tarea o una idea…" maxlength="8000" required><button>Enviar</button></div></form><p class="notice">No ingreses contraseñas, claves API ni datos bancarios.</p></section>
+<section class="panel"><h2>Guardar un recuerdo</h2><div class="stack"><textarea id="memory" rows="3" placeholder="Una preferencia, decisión o dato útil…"></textarea><input id="tag" placeholder="Etiqueta (ej. proyecto, preferencia)" value="general"><button id="saveMemory">Guardar recuerdo</button></div><div id="memories"></div></section>
+</div>
+<div class="two">
+<section class="panel"><h2>Propuestas de mejora</h2><input id="ptitle" placeholder="Título de la propuesta"><textarea id="prationale" rows="3" placeholder="Qué mejorar y por qué…"></textarea><button id="saveProposal" style="margin-top:8px">Crear propuesta</button><div id="proposals"></div><p class="notice">Aprobar aquí solo registra tu decisión; no modifica automáticamente el código ni las reglas de NEXUS.</p></section>
+<section class="panel"><h2>Estado del sistema</h2><div id="system" class="muted">Cargando estado…</div><h2 style="margin-top:22px">Registro reciente</h2><div id="events"></div></section>
+</div>
+<footer class="notice">Prototipo inicial · mantené esta app en tu PC · todavía no es una IA conectada ni un sistema listo para publicar en internet.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+async function api(url,opts={}){const r=await fetch(url,{headers:{'Content-Type':'application/json'},...opts});const d=await r.json();if(!r.ok)throw new Error(d.detail||'Error en la solicitud');return d}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function bubble(text,who){const el=document.createElement('div');el.className='bubble '+who;el.textContent=text;$('chatlog').appendChild(el);$('chatlog').scrollTop=$('chatlog').scrollHeight}
+$('chatform').addEventListener('submit',async e=>{e.preventDefault();const message=$('message').value.trim();if(!message)return;$('message').value='';bubble(message,'user');try{const d=await api('/api/chat',{method:'POST',body:JSON.stringify({message})});bubble(d.reply,'bot')}catch(err){bubble('Error: '+err.message,'bot')}});
+$('saveMemory').onclick=async()=>{try{const content=$('memory').value.trim();if(!content)return alert('Escribí el recuerdo primero.');await api('/api/memories',{method:'POST',body:JSON.stringify({content,tag:$('tag').value||'general'})});$('memory').value='';await refresh();}catch(e){alert(e.message)}};
+$('saveProposal').onclick=async()=>{try{const title=$('ptitle').value.trim(),rationale=$('prationale').value.trim();if(!title||!rationale)return alert('Completá título y explicación.');await api('/api/proposals',{method:'POST',body:JSON.stringify({title,rationale})});$('ptitle').value='';$('prationale').value='';await refresh()}catch(e){alert(e.message)}};
+async function review(id,decision){try{await api('/api/proposals/'+id+'/review?decision='+decision,{method:'POST'});await refresh()}catch(e){alert(e.message)}}
+async function delMemory(id){if(!confirm('¿Borrar este recuerdo?'))return;try{await api('/api/memories/'+id,{method:'DELETE'});await refresh()}catch(e){alert(e.message)}}
+async function refresh(){try{
+const [m,p,ev,s]=await Promise.all([api('/api/memories'),api('/api/proposals'),api('/api/events'),api('/api/status')]);
+$('mode').textContent=s.mode==='demo'?'MODO DEMO':'Modelo por configurar';
+$('system').innerHTML='<div class="item"><p><b>Versión:</b> '+esc(s.version)+'</p><p><b>Modo:</b> '+esc(s.mode)+'</p><p><b>Proveedor:</b> '+esc(s.provider)+'</p><p><b>Clave API detectada:</b> '+(s.api_key_configured?'Sí':'No')+'</p><p><b>Base:</b> SQLite local</p><p><b>Acceso remoto:</b> desactivado</p></div>';
+$('memories').innerHTML=m.items.length?m.items.map(x=>'<div class="item"><small>'+esc(x.tag)+' · '+esc(new Date(x.created_at).toLocaleString())+'</small><p>'+esc(x.content)+'</p><button onclick="delMemory('+x.id+')">Borrar</button></div>').join(''):'<p class="muted">Todavía no guardaste recuerdos.</p>';
+$('proposals').innerHTML=p.items.length?p.items.map(x=>'<div class="item"><small>#'+x.id+' · '+esc(x.status)+'</small><p><b>'+esc(x.title)+'</b></p><p>'+esc(x.rationale)+'</p>'+(x.status==='pending'?'<button onclick="review('+x.id+',\'approve\')">Aprobar</button><button onclick="review('+x.id+',\'reject\')">Rechazar</button>':'')+'</div>').join(''):'<p class="muted">No hay propuestas todavía.</p>';
+$('events').innerHTML=ev.items.length?ev.items.slice(0,8).map(x=>'<div class="item"><small>'+esc(new Date(x.created_at).toLocaleString())+' · '+esc(x.kind)+'</small><p>'+esc(x.detail)+'</p></div>').join(''):'<p class="muted">Todavía no hay actividad.</p>';
+}catch(e){$('system').textContent='No se pudo conectar con la API: '+e.message}}
+refresh();
+</script></body></html>
